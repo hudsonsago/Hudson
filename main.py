@@ -1,3 +1,23 @@
+import threading
+from flask import Flask
+
+# Cria um servidor web simples para o Render não fechar o app
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Robô de Futebol está rodando!"
+
+def run_web():
+    app.run(host='0.0.0.0', port=8080)
+
+# Roda o servidor web em uma thread paralela
+threading.Thread(target=run_web).start()
+
+# --- ABAIXO MANTÉM SEU CÓDIGO NORMAL DO ROBÔ ---
+import time
+import requests
+...
 import time
 import requests
 
